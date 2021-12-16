@@ -104,9 +104,9 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
-   <div class="modal fade" id="form">
+   <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" wire:ignore.self>
         <div class="modal-dialog" role="document">
-        <form autocomplete="off">
+        <form autocomplete="off" wire:submit.prevent="createUser">
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title" id="">Add New User</h4>
@@ -117,28 +117,38 @@
             <div class="modal-body">
                 <div class="form-group">
                   <label for="name">Name</label>
-                  <input type="text" class="form-control" id="name" aria-describeby="nameHelp"
+                  <input type="text" wire:model.defer="state.name" class="form-control @error('name') is-invalid @enderror" id="name" aria-describeby="nameHelp"
                   placeholder="Enter Full Name">
+                  @error('name')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                  @enderror
                 </div>
                 <div class="form-group">
                   <label for="email">Email Address</label>
-                  <input type="email" class="form-control" id="email" aria-describeby="emailHelp"
+                  <input type="email" wire:model.defer="state.email" class="form-control" id="email" aria-describeby="emailHelp"
                   placeholder="Enter email">
+                  @error('name')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                  @enderror
                 </div>
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <input type="password" class="form-control" id="email" aria-describeby="emailHelp"
+                  <input type="password" wire:model.defer="state.password" class="form-control" id="email" aria-describeby="emailHelp"
                   placeholder="Enter email">
                 </div>
                 <div class="form-group">
                   <label for="passwordConfirmation">Confirm Password</label>
-                  <input type="password" class="form-control" id="email" aria-describeby="emailHelp"
+                  <input type="password" wire:model.defer="state.password_confirmation" class="form-control" id="email" aria-describeby="emailHelp"
                   placeholder="Enter email">
                 </div>
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-primary">Save</button>
+              <button type="submit" class="btn btn-primary">Save</button>
             </div>
           </div>
           <!-- /.modal-content -->
