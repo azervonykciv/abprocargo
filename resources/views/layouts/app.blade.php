@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="{{ asset('backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('backend/plugins/toastr/toastr.min.css') }}">
   <livewire:styles />
 </head>
 <body class="hold-transition sidebar-mini">
@@ -72,6 +74,17 @@
 <script src="{{ asset('backend/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
 <script src="{{ asset('backend/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
 
+<script type="text/javascript" src="{{ asset('backend/plugins/toastr/toastr.min.js') }}"></script>
+
+<script>
+  $(document).ready(function() {
+    toastr.options = {
+      "positionClass": "toast-bottom-right",
+      "progressBar": true,
+    }
+  });
+</script>
+
 <script>
   $(function () {
     $("#example1").DataTable({
@@ -92,6 +105,11 @@
 <script>
   window.addEventListener('show-form', event => {
     $('#form').modal('show');
+  });
+
+  window.addEventListener('hide-form', event => {
+    $('#form').modal('hide');
+    toastr.success(event.detail.message, 'Success!');
   });
 </script>
 <livewire:scripts />
