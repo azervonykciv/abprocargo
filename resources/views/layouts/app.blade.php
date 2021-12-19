@@ -112,6 +112,12 @@
     toastr.success(event.detail.message, 'Success!');
   });
 </script>
+
+<script>
+  window.addEventListener('hide-form', event => {
+    $('#form').modal('show');
+  });
+</script>
 <livewire:scripts />
 </body>
 </html>

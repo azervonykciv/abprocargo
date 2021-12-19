@@ -45,7 +45,7 @@
                         <i class="fa fa-edit mr-2"></i>
                       </a>
 
-                      <a href="">
+                      <a href="" wire:click.prevent="confirmUserRemoval({{ $user->id }})">
                         <i class="fa fa-trash text-danger"></i>
                       </a>
 
@@ -65,10 +65,22 @@
     <!-- /.content -->
    <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" wire:ignore.self>
         <div class="modal-dialog" role="document">
-        <form autocomplete="off" wire:submit.prevent="createUser">
+        @if($showEditModal)
+          <form autocomplete="off" wire:submit.prevent="updateUser">
+        @else
+          <form autocomplete="off" wire:submit.prevent="createUser">
+        @endif
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title" id="">Add New User</h4>
+              <h5 class="modal-title" id="">
+              @if($showEditModal)
+                <span>Edit User</span>
+              @else
+                <span>
+                  Add New User
+                </span>
+              @endif
+              </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
               </button>
@@ -112,7 +124,11 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times mr-1"></i>Cancel</button>
-              <button type="submit" class="btn btn-primary">Save</button>
+              @if($showEditModal)
+              <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i>Update</button>
+              @else
+              <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i>Save</button>
+              @endif
             </div>
           </div>
           <!-- /.modal-content -->

@@ -3,39 +3,73 @@
 namespace App\Http\Livewire\Admin\Users;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Validator as FacadesValidator;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class ListUsers extends Component
 {
     public $state = [];
 
+    public $user;
+
+    public $showEditModal = false;  
+
     public function addNew()
     {
+        $this->state = [];
+
+        $this->showEditModal = false;
         $this->dispatchBrowserEvent('show-form');
     }
     
     public function createUser()
     {
-        $validatedDate = FacadesValidator::make($this->state, [
+        $validatedDate = Validator::make($this->state, [
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
-        ])->validated();
+        ])->validate();
 
         $validatedDate['password'] = bcrypt($validatedDate['password']);
 
         User::create($validatedDate);
         $this->dispatchBrowserEvent('hide-form', ['message' => 'User added succesfully!']);
-
-
-
         return redirect()->back();
     }
 
     public function edit(User $user)
     {
-        dd($user);
+        $this->showEditModal = true;
+        
+        $this->user = $user;
+
+        //dd($user->id);
+
+        $this->state = $user->toArray();
+         
+        $this->dispatchBrowserEvent('show-form');
+    }
+
+    public function updateUser()
+    {
+        $validatedDate = Validator::make($this->state, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$this->user->id,
+            'password' => 'sometimes|confirmed',
+        ])->validate();
+
+        if(!empty($validatedDate['password'])) {
+            $validatedDate['password'] = bcrypt($validatedDate['password']);
+        }
+
+        $this->user->update($validatedDate);
+        $this->dispatchBrowserEvent('hide-form', ['message' => 'User Updated succesfully!']);
+        return redirect()->back();
+    }
+
+    public function confirmUserRemoval()
+    {
+
     }
     
     public function render()
