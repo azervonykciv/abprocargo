@@ -116,6 +116,15 @@
 <script>
   window.addEventListener('hide-form', event => {
     $('#form').modal('show');
+  })
+
+  window.addEventListener('show-delete-modal', event => {
+    $('#confirmationModal').modal('show');
+  })
+
+  window.addEventListener('hide-delete-modal', event => {
+    $('#confirmationModal').modal('hide');
+    toastr.success(event.detail.message, 'Success!');
   });
 </script>
 <livewire:scripts />

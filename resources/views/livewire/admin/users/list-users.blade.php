@@ -53,7 +53,7 @@
                   @endforeach
                   </tr>
                   </tbody>
-                </table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="example1_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
+                </table></div></div>
               </div>
               </div>
             </div>
@@ -65,11 +65,7 @@
     <!-- /.content -->
    <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" wire:ignore.self>
         <div class="modal-dialog" role="document">
-        @if($showEditModal)
-          <form autocomplete="off" wire:submit.prevent="updateUser">
-        @else
-          <form autocomplete="off" wire:submit.prevent="createUser">
-        @endif
+          <form autocomplete="off" wire:submit.prevent="{{ $showEditModal ? 'updateUser' : 'createUser' }}">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="">
@@ -124,10 +120,16 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times mr-1"></i>Cancel</button>
-              @if($showEditModal)
-              <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i>Update</button>
-              @else
-              <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i>Save</button>
+              <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i>
+                @if($showEditModal)
+                <span>
+                  Update
+                </span>
+                @else
+                <span>
+                  Save
+                </span>
+              </button>
               @endif
             </div>
           </div>
@@ -136,7 +138,25 @@
         </form>
         <!-- /.modal-dialog -->
       </div>
-</div>
+
+      <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" wire:ignore.self>
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h5>Delete User</h5>
+              </div>
+              <div class="modal-body">
+                <h4>Are You Sure You Want To Delete This User?</h4>
+              </div>
+                
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times mr-1"></i>Cancel</button>
+                <button type="button" wire:click.prevent="deleteUser" class="btn btn-danger"><i class="fa fa-save mr-1"></i> Delete User</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 

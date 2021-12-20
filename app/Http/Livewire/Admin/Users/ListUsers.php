@@ -12,7 +12,9 @@ class ListUsers extends Component
 
     public $user;
 
-    public $showEditModal = false;  
+    public $showEditModal = false;
+
+    public $userIdBeingRemoved = null;
 
     public function addNew()
     {
@@ -67,9 +69,21 @@ class ListUsers extends Component
         return redirect()->back();
     }
 
-    public function confirmUserRemoval()
+    public function confirmUserRemoval($userId)
     {
+        $this->userIdBeingRemoved = $userId;
+        $this->dispatchBrowserEvent('show-delete-modal');
+    }
 
+    public function deleteUser()
+    {
+        $user = User::findOrFail($this->userIdBeingRemoved);
+
+        $user->delete();
+
+        $this->dispatchBrowserEvent('hide-delete-modal', ['message' => 'User Deleted Successfully']);
+
+        dd($user);
     }
     
     public function render()
