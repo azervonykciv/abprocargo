@@ -13,7 +13,7 @@
               </div><!-- /.col -->
             </div><!-- /.row -->
           </div><!-- /.container-fluid -->
-        </div>
+      </div>
     <!-- Main content -->
         <div class="content">
           <div class="container-fluid">
