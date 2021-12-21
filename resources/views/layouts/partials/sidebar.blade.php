@@ -43,6 +43,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('admin.appointments') }}" class="nav-link {{ request()->is('admin/appointments') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-calendar-alt"></i>
+              <p>
+                Appointments
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
