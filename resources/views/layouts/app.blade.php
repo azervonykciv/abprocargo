@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="{{ asset('backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 
   <link rel="stylesheet" type="text/css" href="{{ asset('backend/plugins/toastr/toastr.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
   <livewire:styles />
 </head>
 <body class="hold-transition sidebar-mini">
@@ -73,8 +74,10 @@
 <script src="{{ asset('backend/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('backend/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
 <script src="{{ asset('backend/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-
+<script src="{{ asset('backend/plugins/moment/moment.min.js') }}"></script>
+<script type="text/javascript" src="https://unpkg.com/moment"></script>
 <script type="text/javascript" src="{{ asset('backend/plugins/toastr/toastr.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 
 <script>
   $(document).ready(function() {
@@ -125,6 +128,14 @@
   window.addEventListener('hide-delete-modal', event => {
     $('#confirmationModal').modal('hide');
     toastr.success(event.detail.message, 'Success!');
+  });
+</script>
+
+<script>
+  $(document).ready(function() {
+    $('#appointmentDate').datetimepicker({
+        format: 'L'
+    });
   });
 </script>
 <livewire:scripts />
