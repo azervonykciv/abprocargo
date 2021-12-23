@@ -40,7 +40,7 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>Date:</label>
-                          <div class="input-group date" id="appointmentDate" data-target-input="nearest">
+                          <div class="input-group date" id="appointmentDate" data-target-input="nearest" data-appointmentdate="@this">
                               <input wire:model.defer="state.date" type="text" class="form-control datetimepicker-input" data-target="#appointmentDate">
                               <div class="input-group-append" data-target="#appointmentDate" data-toggle="datetimepicker">
                                   <div class="input-group-text"><i class="fa fa-calendar"></i></div>

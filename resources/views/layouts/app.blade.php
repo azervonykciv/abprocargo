@@ -136,6 +136,11 @@
     $('#appointmentDate').datetimepicker({
         format: 'L'
     });
+
+    $('#appointmentDate').on("change.datetimepicker", function (e) {
+      let date = $(this).data('appointmentdate');
+      console.log(data);
+    });
   });
 </script>
 <livewire:scripts />
