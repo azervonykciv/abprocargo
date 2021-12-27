@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Appointments;
 
+use App\Models\Appointment;
 use Livewire\Component;
 use App\Models\Client;
 
@@ -12,7 +13,11 @@ class CreateAppointmentsForm extends Component
 
     public function createAppointment()
     {
-        dd($this->state);
+        $this->state['time'] = '00:00:00';
+        $this->state['status'] = 'Open';
+        Appointment::create($this->state);
+
+        $this->dispatchBrowserEvent('alert', ['message' => 'Appointment create Success']);
     }
     
 
