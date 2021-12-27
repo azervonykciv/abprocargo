@@ -134,12 +134,12 @@
 <script>
   $(document).ready(function() {
     $('#appointmentDate').datetimepicker({
-        format: 'L'
+        format: 'L',
     });
 
     $('#appointmentDate').on("change.datetimepicker", function (e) {
       let date = $(this).data('appointmentdate');
-      console.log(data);
+      eval(date).set('state.date', $('#appointmentDateInput').val());
     });
   });
 </script>

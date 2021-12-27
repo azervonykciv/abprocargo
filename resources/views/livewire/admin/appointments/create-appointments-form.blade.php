@@ -40,8 +40,9 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>Date:</label>
-                          <div class="input-group date" id="appointmentDate" data-target-input="nearest" data-appointmentdate="@this">
-                              <input wire:model.defer="state.date" type="text" class="form-control datetimepicker-input" data-target="#appointmentDate">
+                          <div wire:ignore class="input-group date" id="appointmentDate" data-target-input="nearest" data-appointmentdate="@this">
+                              <input type="text" class="form-control datetimepicker-input" 
+                              data-target="#appointmentDate" id="appointmentDateInput">
                               <div class="input-group-append" data-target="#appointmentDate" data-toggle="datetimepicker">
                                   <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                               </div>
@@ -51,9 +52,9 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>Time picker:</label>
-                        <div class="input-group date" id="timepicker" data-target-input="nearest">
-                          <input wire:model.defer="state.time" type="text" class="form-control datetimepicker-input" data-target="#timepicker">
-                          <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                        <div class="input-group date" id="appointmentTime" data-target-input="nearest" data-appointmenttime="@this">
+                          <input wire:model.defer="state.time" type="text" class="form-control datetimepicker-input" data-target="#appointmentTime" id="appointmentTimeInput">
+                          <div class="input-group-append" data-target="#appointmentTime" data-toggle="datgetimepicker">
                               <div class="input-group-text"><i class="far fa-clock"></i></div>
                           </div>
                           </div>
@@ -72,7 +73,7 @@
               </div>
                 <div class="card-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-1"></i>Cancel</button>
-                  <button type="button" class="btn btn-primary"><i class="fa fa-save mr-1"></i> Save</button>
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i> Save</button>
                 </div>
               </div>
               </form>

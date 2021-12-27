@@ -9,6 +9,11 @@ class CreateAppointmentsForm extends Component
 {
 
     public $state = [];
+
+    public function createAppointment()
+    {
+        dd($this->state);
+    }
     
 
     public function render()
