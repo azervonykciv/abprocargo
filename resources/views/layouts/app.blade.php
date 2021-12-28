@@ -141,6 +141,16 @@
       let date = $(this).data('appointmentdate');
       eval(date).set('state.date', $('#appointmentDateInput').val());
     });
+
+    $('#appointmentTime').datetimepicker({
+      format: 'LT',
+    });
+
+    $('#appointmentTime').on("change.datetimepicker", function (e) {
+      let time = $(this).data('appointmenttime');
+      eval(time).set('state.time', $('#appointmentTimeInput').val());
+      
+    });
   });
 </script>
 <livewire:scripts />

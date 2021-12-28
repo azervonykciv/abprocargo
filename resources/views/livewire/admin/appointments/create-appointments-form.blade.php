@@ -51,10 +51,10 @@
                     </div>
                     <div class="col-sm-6">
                       <div class="form-group">
-                        <label>Time picker:</label>
-                        <div class="input-group date" id="appointmentTime" data-target-input="nearest" data-appointmenttime="@this">
-                          <input wire:model.defer="state.time" type="text" class="form-control datetimepicker-input" data-target="#appointmentTime" id="appointmentTimeInput">
-                          <div class="input-group-append" data-target="#appointmentTime" data-toggle="datgetimepicker">
+                        <label>Appointment Time:</label>
+                        <div wire:ignore class="input-group date" id="appointmentTime" data-target-input="nearest" data-appointmenttime="@this">
+                          <input type="text" class="form-control datetimepicker-input" data-target="#appointmentTime" id="appointmentTimeInput">
+                          <div class="input-group-append" data-target="#appointmentTime" data-toggle="datetimepicker">
                               <div class="input-group-text"><i class="far fa-clock"></i></div>
                           </div>
                           </div>
