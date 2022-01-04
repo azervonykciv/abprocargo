@@ -1,3 +1,15 @@
-<div>
-    <input type="text" class="form-control datetimepicker-input" id="datetimepicker5" data-toggle="datetimepicker" data-target="#datetimepicker5"/>
-</div>
+@props(['id'])
+
+<input type="text" class="form-control datetimepicker-input" id="{{ $id }}" data-toggle="datetimepicker" data-target="#{{ $id }}"
+    onchange="this.dispatchEvent(new InputEvent('input'))"
+    />
+
+@push('js')
+<script type="text/javascript">
+    $(function () {
+        $('#{{ $id }}').datetimepicker({
+            format: 'LT'
+        });
+    });
+</script>
+@endpush
