@@ -44,11 +44,10 @@
                               <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-clock"></i></span>
                               </div>
-                              <x-timepicker wire:model="state.appointment_start_time" id="
-                              appointmentStartTime" />
+                              <x-datepicker wire:model="state.appointment_start_time" id="appointmentStartTime" />
                             </div>
                           </div>
-                        </div>
+                        </div> 
 
                         <div class="col-md-6">
                           <div class="form-group">
@@ -57,8 +56,7 @@
                               <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-clock"></i></span>
                               </div>
-                              <x-timepicker wire:model="state.appointment_end_time" id="
-                              appointmentEndTime"/>
+                              <x-timepicker wire:model="state.appointment_end_time" id="appointmentEndTime"/>
                             </div>
                           </div>
                         </div>
