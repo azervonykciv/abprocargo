@@ -36,7 +36,7 @@
                           </div>
                       </div>
 
-                      <div class="row">
+                      {{-- <div class="row">
                         <div class="col-md-6">
                           <div class="form-group">
                           <label for="appointmentStartTime">Appointment Start Time</label>
@@ -44,8 +44,7 @@
                               <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-clock"></i></span>
                               </div>
-                              <x-timepicker wire:model="state.appointment_start_time" id="
-                              appointmentStartTime" />
+                              <x-timepicker wire:model="state.appointment_start_time" id="appointmentStartTime" />
                             </div>
                           </div>
                         </div>
@@ -57,61 +56,47 @@
                               <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-clock"></i></span>
                               </div>
-                              <x-timepicker wire:model="state.appointment_end_time" id="
-                              appointmentEndTime"/>
+                              <x-timepicker wire:model="state.appointment_end_time" id="appointmentEndTime" />
+                            </div>
+                          </div>
+                        </div>
+                      </div> --}}
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                          <label for="appointmentStartTime">Appointment Date</label>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                              </div>
+                              <x-datepicker wire:model.defer="state.date" id="appointmentDate" />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                          <label for="appointmentEndTime">Appointment End Time</label>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                              </div>
+                              <x-timepicker wire:model.defer="state.time" id="appointmentTime" />
                             </div>
                           </div>
                         </div>
                       </div>
-
                       
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label>Date:</label>
-                              <div wire:ignore class="input-group date" id="appointmentDate" data-target-input="nearest" data-appointmentdate="@this">
-                                  <input type="text" class="form-control datetimepicker-input" 
-                                  data-target="#appointmentDate" id="appointmentDateInput">
-                                  <div class="input-group-append" data-target="#appointmentDate" data-toggle="datetimepicker">
-                                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                  </div>
-                              </div>
-                          </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                          <div wire:ignore class="form-group">
+                            <label for="note">Note:</label>
+                            <textarea id="note" data-note="@this" wire:model.defer="state.note" class="form-control"></textarea>
+                          </div>  
                         </div>
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label>Appointment Time:</label>
-                            <div wire:ignore class="input-group date" id="appointmentTime" data-target-input="nearest" data-appointmenttime="@this">
-                              <input type="text" class="form-control datetimepicker-input" data-target="#appointmentTime" id="appointmentTimeInput">
-                              <div class="input-group-append" data-target="#appointmentTime" data-toggle="datetimepicker">
-                                  <div class="input-group-text"><i class="far fa-clock"></i></div>
-                              </div>
-                              </div>
-                            <!-- /.input group -->
-                          </div>
-                        </div>
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label>Appointment Time End:</label>
-                            <div wire:ignore class="input-group date" id="appointmentTime" data-target-input="nearest" data-appointmenttime="@this">
-                              <input type="text" class="form-control datetimepicker-input" data-target="#appointmentTime" id="appointmentTimeInput">
-                              <div class="input-group-append" data-target="#appointmentTime" data-toggle="datetimepicker">
-                                  <div class="input-group-text"><i class="far fa-clock"></i></div>
-                              </div>
-                              </div>
-                            <!-- /.input group -->
-                          </div>
-                        </div>
-                      </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div wire:ignore class="form-group">
-                      <label for="note">Note:</label>
-                      <textarea id="note" data-note="@this" wire:model.defer="state.note" class="form-control"></textarea>
-                    </div>  
-                  </div>
-                </div>      
-              </div>
+                    </div>      
+                </div>
                 <div class="card-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-1"></i>Cancel</button>
                   <button id="submit" type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i> Save</button>
@@ -128,34 +113,6 @@
 
 
 @push('js')
-  <script>
-  $(document).ready(function() {
-    $('#appointmentDate').datetimepicker({
-        format: 'L',
-    });
-
-    $('#appointmentDate').on("change.datetimepicker", function (e) {
-      let date = $(this).data('appointmentdate');
-      eval(date).set('state.date', $('#appointmentDateInput').val());
-    });
-
-    $('#appointmentTime').datetimepicker({
-      format: 'LT',
-    });
-
-    $('#appointmentTime').on("change.datetimepicker", function (e) {
-      let time = $(this).data('appointmenttime');
-      eval(time).set('state.time', $('#appointmentTimeInput').val());
-      
-    });
-
-    $('#appointmentTime').on("change.datetimepicker", function (e) {
-      let time = $(this).data('appointmenttime');
-      eval(time).set('state.time', $('#appointmentTimeInput').val());
-      
-    });
-  });
-</script>
 <script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
 <script>
   ClassicEditor
