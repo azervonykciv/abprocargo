@@ -50,7 +50,12 @@
                               <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-clock"></i></span>
                               </div>
-                              <x-datepicker wire:model="state.date" id="appointmentDate" />
+                              <x-datepicker wire:model="state.date" id="appointmentDate" :error="'date'"/>
+                              @error('date')
+                              <div class="invalid-feedback">
+                                {{ $message }}
+                              </div>
+                              @enderror
                             </div>
                           </div>
                         </div> 
@@ -62,18 +67,12 @@
                               <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-clock"></i></span>
                               </div>
-                              <x-timepicker wire:model="state.time" id="appointmentTime"/>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                          <label for="appointmentEndTime">Appointment Time</label>
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                              <x-timepicker wire:model="state.time" id="appointmentTime" :error="'time'"/>
+                              @error('time')
+                              <div class="invalid-feedback">
+                                {{ $message }}
                               </div>
-                              <x-timepicker wire:model="state.appointment_end_time" id="appointmentTime"/>
+                              @enderror
                             </div>
                           </div>
                         </div>
@@ -96,6 +95,12 @@
                                   <option value="SCHEDULED">Scheduled</option>
                                   <option value="CLOSED">Closed</option>
                           </select>
+
+                          @error('date')
+                              <div class="invalid-feedback">
+                                {{ $message }}
+                              </div>
+                              @enderror
                           
                        </div>
                   </div>

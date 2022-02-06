@@ -10,7 +10,9 @@ use App\Models\Client;
 class CreateAppointmentsForm extends Component
 {
 
-    public $state = [];
+    public $state = [
+        'status' => 'SCHEDULED'
+    ];
 
     public function createAppointment()
     {
@@ -20,7 +22,11 @@ class CreateAppointmentsForm extends Component
             'time' => 'required',
             'note' => 'nullable',
             'status' => 'required',
-        ], ['client_id.required' => 'The Client Field Is Required.'])->validate();
+        ], 
+        [
+            'client_id.required' => 'The Client Field Is Required.'
+        ])->validate();
+        
         dd($this->state);
         Appointment::create($this->state);
 
