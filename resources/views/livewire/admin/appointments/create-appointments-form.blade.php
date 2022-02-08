@@ -90,17 +90,16 @@
                   <div class="col-sm-6">
                       <div class="form-group">
                           <label>Status:</label>
-                          <select wire:model.defer="state.status" class="form-control">
+                          <select wire:model.defer="state.status" class="form-control @error('status') is-invalid @enderror">
                               <option value="">Select Status</option>
                                   <option value="SCHEDULED">Scheduled</option>
                                   <option value="CLOSED">Closed</option>
                           </select>
-
-                          @error('date')
+                          @error('status')
                               <div class="invalid-feedback">
                                 {{ $message }}
                               </div>
-                              @enderror
+                          @enderror
                           
                        </div>
                   </div>

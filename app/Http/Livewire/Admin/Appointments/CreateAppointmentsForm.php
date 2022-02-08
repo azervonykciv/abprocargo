@@ -21,13 +21,11 @@ class CreateAppointmentsForm extends Component
             'date' => 'required',
             'time' => 'required',
             'note' => 'nullable',
-            'status' => 'required',
+            'status' => 'required|in',
         ], 
         [
             'client_id.required' => 'The Client Field Is Required.'
         ])->validate();
-        
-        dd($this->state);
         Appointment::create($this->state);
 
         $this->dispatchBrowserEvent('alert', ['message' => 'Appointment create Success']);
