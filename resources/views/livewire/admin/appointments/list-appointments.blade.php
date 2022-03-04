@@ -30,6 +30,7 @@
                         <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"><div class="dt-buttons btn-group flex-wrap"><button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="example1" type="button"><span>Copy</span></button> <button class="btn btn-secondary buttons-csv buttons-html5" tabindex="0" aria-controls="example1" type="button"><span>CSV</span></button> <button class="btn btn-secondary buttons-excel buttons-html5" tabindex="0" aria-controls="example1" type="button"><span>Excel</span></button> <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="example1" type="button"><span>PDF</span></button> <button class="btn btn-secondary buttons-print" tabindex="0" aria-controls="example1" type="button"><span>Print</span></button> <div class="btn-group"><button class="btn btn-secondary buttons-collection dropdown-toggle buttons-colvis" tabindex="0" aria-controls="example1" type="button" aria-haspopup="true" aria-expanded="false"><span>Column visibility</span></button></div> </div></div><div class="col-sm-12 col-md-6"><div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="example1"></label></div></div></div><div class="row"><div class="col-sm-12"><table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                           <thead>
                           <tr role="row">
+                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">#</th>
                             <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Client Name</th>
                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Date</th>
                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Time</th>
@@ -38,21 +39,32 @@
                           </tr>
                           </thead>
                           <tbody>
-                            <tr class="odd">
-                            <td class="dtr-control sorting_1" tabindex="0">Client Name</td>
-                            <td>Date</td>
-                            <td>Time</td>
-                            <td>Status</td>
-                            <td>
-                              <a href="" wire:click.prevent="">
-                                <i class="fa fa-edit mr-2"></i>
-                              </a>
-    
-                              <a href="" wire:click.prevent="">
-                                <i class="fa fa-trash text-danger"></i>
-                              </a>
-    
-                            </td>
+                            @foreach ($appointments as $appointment)
+                            <tr>
+                              <th scope="row">{{ $loop->iteration }}</th>
+                              <td>{{ $appointment->client->name }}</td>
+                              <td>{{ $appointment->date->toFormattedDate() }}</td>
+                              <td>{{ $appointment->time->toFormattedTime() }}</td>
+                              <td>
+                                <span class="badge badge-{{ $appointment->status_badge }}">{{ $appointment->status }}</span>
+                              </td>
+                              <td>
+                                @if ($appointment->status == 'SCHEDULED')
+                                  <span class="badge badge-primary">SCHEDULED</span>
+                                @elseif ($appointment->status == 'CLOSED')
+                                  <span class="badge badge-success">CLOSED</span>
+                                @endif
+                              </td>
+                              <td>
+                                <a href="" wire:click.prevent="">
+                                  <i class="fa fa-edit mr-2"></i>
+                                </a>
+                                <a href="" wire:click.prevent="">
+                                  <i class="fa fa-trash text-danger"></i>
+                                </a>
+                              </td>
+                            </tr>
+                            @endforeach
                           </tr>
                           </tbody>
                         </table></div></div>
