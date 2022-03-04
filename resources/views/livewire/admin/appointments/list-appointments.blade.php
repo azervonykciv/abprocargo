@@ -56,10 +56,10 @@
                                 @endif
                               </td>
                               <td>
-                                <a href="" wire:click.prevent="">
+                                <a href="{{ route('admin.appointments.edit', $appointment) }}">
                                   <i class="fa fa-edit mr-2"></i>
                                 </a>
-                                <a href="" wire:click.prevent="">
+                                <a href="">
                                   <i class="fa fa-trash text-danger"></i>
                                 </a>
                               </td>
